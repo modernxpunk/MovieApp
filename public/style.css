@@ -9,11 +9,11 @@ html {
 	font-family: 'Ubuntu', sans-serif;
 }
 
-p, h1 {
+p, h1, span {
 	color: white;
 }
 
-p { 
+span, p { 
 	font-size: 1em;
 }
 
@@ -51,7 +51,7 @@ p {
 
 img {
 	margin: 2px;
-	width: 1.5em;
+	width: 12px;
 }
 
 .backgroundImage {	
@@ -74,10 +74,28 @@ img {
 .score {
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 }
 
 .score div {
 	padding: 3%;
+}
+
+.score {
+	font-size: 0.8em;
+}
+
+.score  img, .score span {
+	display: block;
+}
+.score img {
+	margin: 0 auto;
+}
+
+.mark {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .nameClass {
