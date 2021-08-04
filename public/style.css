@@ -25,7 +25,7 @@ span, p {
 
 .catalog {
 	width: 60%;
-	padding: 5px;
+	padding: 10px;
 	margin: 0 auto;
 	border-radius: 10px;
 	background-color: #1c1c1e;
@@ -92,12 +92,6 @@ img {
 	margin: 0 auto;
 }
 
-.mark {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
 .nameClass {
 	width: 10px;
 	height: 10px;
@@ -153,25 +147,153 @@ img {
 	display: flex;
 }
 
+.film {
+	display: none;
+}
+
+.film_img img {
+	width: 200px;
+}
+
+.film_describe {
+	white-space: wrap;
+}
+
+.back  {
+	display: none;
+}
+
+.back img {
+	cursor: pointer;
+	width: 40px;
+	border: 5px solid black;
+	margin: 2px;
+	padding: 2px;
+	border-radius: 100%;
+}
+
+.film_right {
+	padding: 10px;
+}
+
+.film_name {
+	width: 85%;
+	font-size: 2em;
+}
+.film_name p {
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.film_info {
+	display: flex;
+	justify-content: space-between;
+}
+
+.film_score {
+	display: flex;
+	align-items: flex-end;
+}
+
+.film_voting {
+	font-size: .9em;
+	color: #443f3f;
+}
+
+.film_describe {
+	margin-top: 10px;
+	width: 100%;
+}
+
+.film_genres {
+	margin-top: 10px;
+	display: flex;
+	justify-content: start;
+	flex-wrap: wrap;
+	font-size: .9em;
+}
+.film_genres .genre {
+	padding: 5px;
+	margin: 5px 10px 5px 0px;
+	border: 1px solid #141414;
+	border-radius: 10px;
+}
+
+.genre p {
+	color:  #443f3f;
+}
+
+.film_date > div {
+	margin: 10px 0;
+    text-overflow: ellipsis;
+    white-space: wrap;
+    width: 200px;
+}
+
+.film_date > div p:nth-child(1) {
+	color: black;
+	font-size: .8em;
+	color: #443f3f;
+}
+
+.film_date > div :not(p:nth-child(1)) {
+	font-size: .9em;
+}
+
+@media (min-width: 1024px) and (max-width: 1680px) {
+	.film_right {
+		width: 70%;
+	}
+}
+
 @media (min-width: 1024px){
+	.film_right {
+		width: 60%;
+	}
 	.card {
 		width: 18%;
 	}
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+	.film_right {
+		width: 45%;
+	}
 	.card {
 		width: 23%;
 	}
 }
 
 @media (min-width: 425px) and (max-width: 768px) {
+	.film_right {
+		width: 45%;
+	}
+	.film {
+		flex-direction: column;
+		align-items: center;
+	}
 	.card {
 		width: 48%;
 	}
 }
 
 @media (max-width: 425px) {
+	.film_img  {
+		display: flex;
+		justify-content: center;
+	}
+	.film_img img {
+		width: 150px;
+	}
+	.film_right {
+		justify-content: flex-start;
+		width: 75%;
+	}
+	.film {
+		flex-direction: column;
+		align-items: center;
+	}
 	.card {
 		width: 100%;
 	}
