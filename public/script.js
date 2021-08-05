@@ -10,6 +10,12 @@ const API_URL = `${BASE_URL}/discover/movie?page=${activePage}&${API_KEY}`
 const getMovie = async url => await fetch(url).then(res => res.json())
 const films = document.querySelector('.films')
 
+function createNode(name) {
+	const node = document.createElement('div')
+	node.className = name
+	return node
+}
+
 getMovie(API_URL).then(data => {
 	for (film of data.results) {
 		films.append(addInnerCard(createNode('card'), film))
@@ -17,15 +23,19 @@ getMovie(API_URL).then(data => {
 })
 
 const pages = document.querySelectorAll('.page')
-const next_button = document.querySelector('.next_button')
+const header = document.querySelector('.header')
+const currentFilm = document.querySelector('.film')
 const paginationPages = document.querySelector('.pages')
+const pagination = document.querySelector('.pagination')
+const next_button = document.querySelector('.next_button')
 const previous_button = document.querySelector('.previous_button')
 
+const defaultFilm = currentFilm.innerHTML
 
-function createNode(name) {
-	const node = document.createElement('div')
-	node.className = name
-	return node
+const copy = text => {
+	const info = document.createElement('p')
+	info.innerText = text
+	return info
 }
 
 function addInnerCard(card, film) {
@@ -150,45 +160,31 @@ next_button.addEventListener('click', () => {
 		howChange(1)
 })
 
-const pagination = document.querySelector('.pagination')
-const header = document.querySelector('.header')
-const currentFilm = document.querySelector('.film')
-const back = document.querySelector('.back')
-
-
-const defaultFilm = currentFilm.innerHTML
-
-
-const copy = text => {
-	const info = document.createElement('p')
-	info.innerText = text
-	return info
-}
-
 films.addEventListener('click', e => {
+	if (e.target.className === 'films') return
 	currentFilm.innerHTML = defaultFilm
 
-	document.querySelector('.back').style.display = 'block'
+	const back = document.querySelector('.back')
+
+	back.style.display = 'block'
 	header.style.display = 'none'
 	films.style.display = 'none'
 	pagination.style.display = 'none'
 
 	const ID_FILM = e.target.closest('.card').id
-
 	const filmAPI = `${BASE_URL}/movie/${ID_FILM}?${API_KEY}`
 
 	getMovie(filmAPI).then(data => {
-
+		const film_desc = document.querySelector('.film_desc')
 		const film_image = document.querySelector('.film_image')
-		const film_production_companies = document.querySelector('.film_production_companies')
-		const film_production_countries = document.querySelector('.film_production_countries')
-		const film_release_date = document.querySelector('.film_release_date')
 		const film_status = document.querySelector('.film_status')
-		const film_full_name = document.querySelector('.film_full_name')
 		const film_rating = document.querySelector('.film_rating')
 		const film_voting = document.querySelector('.film_voting')
-		const film_desc = document.querySelector('.film_desc')
 		const film_genres = document.querySelector('.film_genres')
+		const film_full_name = document.querySelector('.film_full_name')
+		const film_release_date = document.querySelector('.film_release_date')
+		const film_production_companies = document.querySelector('.film_production_companies')
+		const film_production_countries = document.querySelector('.film_production_countries')
 
 		film_image.src = `${BASE_IMAGE_URL + data.poster_path}`
 
@@ -212,7 +208,7 @@ films.addEventListener('click', e => {
 		currentFilm.style.display = 'flex'
 	})
 
-	document.querySelector('.back').addEventListener('click', () => {
+	back.addEventListener('click', () => {
 		back.style.display = 'none'
 		pagination.style.display = 'flex'
 		header.style.display = 'flex'

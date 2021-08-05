@@ -151,7 +151,8 @@ img {
 	display: none;
 }
 
-.film_img img {
+
+.film_img img, .film_img {
 	width: 200px;
 }
 
